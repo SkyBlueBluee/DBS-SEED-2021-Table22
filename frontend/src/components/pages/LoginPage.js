@@ -31,6 +31,7 @@ const LoginPage = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         let result = await apis.signIn({ username: "username1", password: "password1" });
+        //localStorage.setItem("customer_id", result.data.data.customer_id);
         setIsLoggedIn(true);
     }
 
