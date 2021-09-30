@@ -24,20 +24,20 @@ updateProduct = async (req, res) => {
         })
     }
 
-    Product.findOne({ symbol: req.params.id }, (err, product) => {
+    Product.findOne({ id: req.params.id }, (err, product) => {
         if (err) {
             return res.status(404).json({
                 err,
                 message: 'Product not found!',
             })
         }
-        product.title = body.title
-        product.price = body.price
-        product.description = body.description
-        product.category_id = body.category_id
-        product.image = body.image
+        // product.title = body.title
+        // product.price = body.price
+        // product.description = body.description
+        // product.category_id = body.category_id
+        // product.image = body.image
         product.qty = body.qty
-        stock
+        product
             .save()
             .then(() => {
                 return res.status(200).json({
