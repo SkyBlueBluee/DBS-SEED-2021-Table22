@@ -99,7 +99,11 @@ authenticateCustomer = async (req, res) => {
         })
     }
 
-    Customers.findOne({ username: req.params.username }, (err, customer) => {
+    // const customer = new Customers(body)
+    // customer.username = body.username
+    // customer.password = body.password
+
+    Customers.findOne({ username: body.username }, (err, customer) => {
         if (err) {
             return res.status(404).json({
                 err,
