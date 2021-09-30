@@ -1,5 +1,4 @@
 const Order = require('../models/order-model')
-const axios = require('axios')
 
 createOrder = (req, res) => {
     const body = req.body
