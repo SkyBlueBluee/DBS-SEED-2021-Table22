@@ -1,58 +1,58 @@
-const Product = require('../models/product-model')
+const Products = require("../models/products-model");
 
 getProducts = async (req, res) => {
-    await Product.find({}, (err, products) => {
+    await Products.find({}, (err, products) => {
         if (err) {
-            return res.status(400).json({ success: false, error: err })
+            return res.status(400).json({ success: false, error: err });
         }
         if (!products.length) {
             return res
                 .status(404)
-                .json({ success: false, error: `Product not found` })
+                .json({ success: false, error: `Product not found` });
         }
-        return res.status(200).json({ success: true, data: products })
-    }).catch(err => console.log(err))
-}
+        return res.status(200).json({ success: true, data: products });
+    }).catch((err) => console.log(err));
+};
 
 updateProduct = async (req, res) => {
-    const body = req.body
+    const body = req.body;
 
     if (!body) {
         return res.status(400).json({
             success: false,
-            error: 'You must provide product details to update',
-        })
+            error: "You must provide product details to update",
+        });
     }
 
     Product.findOne({ id: req.params.id }, (err, product) => {
         if (err) {
             return res.status(404).json({
                 err,
-                message: 'Product not found!',
-            })
+                message: "Product not found!",
+            });
         }
         // product.title = body.title
         // product.price = body.price
         // product.description = body.description
         // product.category_id = body.category_id
         // product.image = body.image
-        product.qty = body.qty
+        product.qty = body.qty;
         product
             .save()
             .then(() => {
                 return res.status(200).json({
                     success: true,
                     id: product._id,
-                    message: 'Product updated!',
-                })
+                    message: "Product updated!",
+                });
             })
-            .catch(error => {
+            .catch((error) => {
                 return res.status(404).json({
                     error,
-                    message: 'Product not updated',
-                })
-            })
-    })
-}
+                    message: "Product not updated",
+                });
+            });
+    });
+};
 
-module.exports = { getProducts, updateProduct }
+module.exports = { getProducts, updateProduct };

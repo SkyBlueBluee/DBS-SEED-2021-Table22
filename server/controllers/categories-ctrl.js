@@ -1,5 +1,4 @@
 const Category = require('../models/categories-model')
-const axios = require('axios')
 
 getCategories = async (req, res) => {
     await Category.find({}, (err, categories) => {
