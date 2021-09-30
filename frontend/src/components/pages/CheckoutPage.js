@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react'
 
 import { Button, Card, Container, Row, Col, ListGroup } from "react-bootstrap";
 import style from "./CheckoutPage.module.css"
+
+import "./CheckoutPageStyles.css"
+
 const CheckoutPage = () => {
 
     
@@ -23,7 +26,6 @@ const CheckoutPage = () => {
     };
     let fakeItems = [item1, item2, item3];
 
-    // TODO: Style this part too @JHoweWowe
     const listItems = fakeItems.map((item) =>
         <Card style={{ width: "100%" }}>
             <Card.Header>
@@ -31,17 +33,20 @@ const CheckoutPage = () => {
             </Card.Header>
             <Card.Body>
                 <Row>
-                    <Col>
+                    <Col class="col-4">
                         <Card.Text>
                             {item.description}
                         </Card.Text>
                     </Col>
-                    <Col className="justify-content-md-right">
+                    <Col class="col-6" className="justify-content-md-right">
                         <Row className="justify-content-md-center">
-                            <Col md="auto"> <Button variant="secondary">-</Button> </Col>
+                            <Col md="auto"> <Button id="increaseQuantityButton" variant="secondary">-</Button> </Col>
                             <Col md="auto"><Card.Text>{item.quantity}</Card.Text></Col>
-                            <Col md="auto"><Button variant="secondary">+</Button></Col>
+                            <Col md="auto"><Button id="decreaseQuantityButton" variant="secondary">+</Button></Col>
                         </Row>
+                    </Col>
+                    <Col id="rightColumn" class="col-2 justify-content-md-end">
+                        <Button variant="danger">Delete</Button>
                     </Col>
                 </Row>
             </Card.Body>
@@ -56,11 +61,16 @@ const CheckoutPage = () => {
                     {listItems}
                 </Col>
             </Row>
-            <Row className={style.buttonRow}>
-                <Col md="auto">
-                    <Button variant="primary">Checkout</Button>
-                </Col>
-            </Row>
+
+            <div class="row">
+                <Row className={style.buttonRow}>
+                    <Col md="auto">
+                        <Button variant="primary" style={{ marginRight: "16px" }} class="addMoreItemsButton">Add More Items</Button>
+                        <Button variant="primary" style={{ marginLeft: "16px" }} class="checkoutButton">Checkout</Button>
+                    </Col>
+                </Row>
+            </div>
+
         </Container>
 
     )
