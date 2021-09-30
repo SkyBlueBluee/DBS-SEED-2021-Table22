@@ -1,5 +1,5 @@
-const Order = require('../models/stock-model')
-const Apple = require('../models/apple-model')
+const Cart = require('../models/cart-model')
+const Order = require('../models/order-model')
 const axios = require('axios')
 
 createOrder = (req, res) => {
@@ -14,67 +14,67 @@ createOrder = (req, res) => {
 
     const order = new Order(body)
 
-    if (!stock) {
+    if (!order) {
         return res.status(400).json({ success: false, error: err })
     }
 
-    stock
+    order
         .save()
         .then(() => {
             return res.status(201).json({
                 success: true,
-                id: stock._id,
-                message: 'Stock created!',
+                id: order._id,
+                message: 'Order created!',
             })
         })
         .catch(error => {
             return res.status(400).json({
                 error,
-                message: 'Stock not created!',
+                message: 'Order not created',
             })
         })
 }
 
-createAppleStock = (req, res) => {
+createCart = (req, res) => {
     const body = req.body
 
     if (!body) {
         return res.status(400).json({
             success: false,
-            error: 'You must provide a stock',
+            error: 'You must provide cart details',
         })
     }
 
-    const apple = new Apple(body)
+    const cart = new Cart(body)
 
-    if (!apple) {
+    if (!cart) {
         return res.status(400).json({ success: false, error: err })
     }
 
-    apple
+    cart
         .save()
         .then(() => {
             return res.status(201).json({
                 success: true,
-                id: apple._id,
-                message: 'Stock created!',
+                id: cart._id,
+                message: 'Cart created!',
             })
         })
         .catch(error => {
             return res.status(400).json({
                 error,
-                message: 'Stock not created!',
+                message: 'Cart not created!',
             })
         })
 }
 
-updateStock = async (req, res) => {
+updateCart = async (req, res) => {
     const body = req.body
 
     if (!body) {
         return res.status(400).json({
             success: false,
-            error: 'You must provide a body to update',
+            error: 'You must provide cart details',
         })
     }
 
@@ -161,15 +161,6 @@ fetchData = async (req, res) => {
 
     return res.status(200).json(apiData)
 
-}
-
-function validateProduct(product){
-
-    const schema = Joi.object({
-        name: Joi.string().min(3).required()
-    });
-
-    return schema.validate(course);
 }
 
 module.exports = {
