@@ -16,15 +16,14 @@ function App() {
           <Route exact path="/">
             <LoginPage />
           </Route>
-          <Route exact balance="/products">
+          <Route exact path="/products">
             <ProductPage />
           </Route>
-          <Route exact balance="/checkout">
+          <Route exact path="/checkout">
             <CheckoutPage />
           </Route>
         </Switch>
       </Router>
-      <LoginPage></LoginPage>
       {
         //<CheckoutPage></CheckoutPage>
         //<ProductPage></ProductPage>
