@@ -12,11 +12,17 @@ const api = axios.create({
 
 export const getCategories = () => api.get(`/categories`)
 export const getProducts = () => api.get(`/products`)
+
 export const signIn = (payload) => api.post(`/authenticateCustomer`, {username : payload.username, password : payload.password});
+export const addToCart = payload  => api.get(`/cart`, payload)
+export const checkOutCart = payload => api.get(`/order`, payload)
+
 const apis = {
     getCategories,
     getProducts,
-    signIn
+    signIn,
+    addToCart,
+    checkOutCart
 }
 
 export default apis
