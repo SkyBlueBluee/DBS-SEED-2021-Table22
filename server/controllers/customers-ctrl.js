@@ -115,6 +115,7 @@ authenticateCustomer = async (req, res) => {
             return res.status(200).json({
                     success: true,
                     username: customer._username,
+                    userId: customer.id,
                     message: 'Customer authenticated!',
             })
         } else {
