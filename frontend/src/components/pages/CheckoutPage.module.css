@@ -1,0 +1,18 @@
+.wrapper{
+  margin-top:200px;
+}
+
+.alignLeft{
+  align-items: left;
+  justify-content: left;
+}
+
+.alignRight{
+  align-items: right;
+  justify-content: right;
+}
+
+.buttonRow{
+  margin-top:20px;
+  justify-content: center;
+}
