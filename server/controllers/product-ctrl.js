@@ -1,5 +1,4 @@
 const Product = require('../models/product-model')
-const axios = require('axios')
 
 getProducts = async (req, res) => {
     await Product.find({}, (err, products) => {

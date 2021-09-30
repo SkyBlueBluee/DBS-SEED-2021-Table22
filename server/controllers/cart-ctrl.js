@@ -43,7 +43,7 @@ updateCartQuantity = async (req, res) => {
         })
     }
 
-    Cart.findOne({ customer_id: req.params.customer_id, product_id: req.params.product_id}, (err, cart) => {
+    Cart.findOne({ customer_Id: req.params.customer_Id, productId: req.params.productId}, (err, cart) => {
         if (err) {
             return res.status(404).json({
                 err,
@@ -71,7 +71,7 @@ updateCartQuantity = async (req, res) => {
 }
 
 deleteItemFromCart = async (req, res) => {
-    await Cart.findOneAndDelete({ customer_id: req.params.customer_id, product_id: req.params.product_id}, (err, cart) => {
+    await Cart.findOneAndDelete({ customer_Id: req.params.customer_Id, productId: req.params.productId}, (err, cart) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -82,12 +82,12 @@ deleteItemFromCart = async (req, res) => {
                 .json({ success: false, error: `Unable to find item in cart to delete` })
         }
 
-        return res.status(200).json({ success: true, data: Cart })
+        return res.status(200).json({ success: true, data: cart })
     }).catch(err => console.log(err))
 }
 
 getCartByCustomer = async (req, res) => {
-    await Cart.findOne({ symbol: req.params.customer_id }, (err, cart) => {
+    await Cart.findOne({ symbol: req.params.customer_Id }, (err, cart) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
