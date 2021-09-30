@@ -1,5 +1,4 @@
 const Cart = require('../models/cart-model')
-const axios = require('axios')
 
 createCart = (req, res) => {
     const body = req.body
@@ -44,7 +43,7 @@ updateCartQuantity = async (req, res) => {
         })
     }
 
-    Cart.findOne({ customerId: req.params.customerId, productId: req.params.productId}, (err, cart) => {
+    Cart.findOne({ customer_Id: req.params.customer_Id, productId: req.params.productId}, (err, cart) => {
         if (err) {
             return res.status(404).json({
                 err,
@@ -72,7 +71,7 @@ updateCartQuantity = async (req, res) => {
 }
 
 deleteItemFromCart = async (req, res) => {
-    await Cart.findOneAndDelete({ customerId: req.params.customerId, productId: req.params.productId}, (err, cart) => {
+    await Cart.findOneAndDelete({ customer_Id: req.params.customer_Id, productId: req.params.productId}, (err, cart) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -83,12 +82,12 @@ deleteItemFromCart = async (req, res) => {
                 .json({ success: false, error: `Unable to find item in cart to delete` })
         }
 
-        return res.status(200).json({ success: true, data: Cart })
+        return res.status(200).json({ success: true, data: cart })
     }).catch(err => console.log(err))
 }
 
-getCartByCustomer = async (req, res) => {
-    await Cart.findOne({ symbol: req.params.customerId }, (err, cart) => {
+deleteItemFromCartByCustomerId = async (req, res) => {
+    await Cart.findByIdAndDelete({ customer_Id: req.params.customer_Id}, (err, cart) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -96,7 +95,24 @@ getCartByCustomer = async (req, res) => {
         if (!cart) {
             return res
                 .status(404)
-                .json({ success: false, error: `No items found in cart for ID ${req.params.customerId}` })
+                .json({ success: false, error: `Unable to find item in cart to delete` })
+        }
+
+        return res.status(200).json({ success: true, data: cart })
+    }).catch(err => console.log(err))
+}
+
+
+getCartByCustomer = async (req, res) => {
+    await Cart.findOne({ symbol: req.params.customer_Id }, (err, cart) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!cart) {
+            return res
+                .status(404)
+                .json({ success: false, error: `No items found in cart for ID ${req.params.customer_id}` })
         }
         return res.status(200).json({ success: true, data: cart })
     }).catch(err => console.log(err))
@@ -106,5 +122,6 @@ module.exports = {
     createCart,
     updateCartQuantity,
     deleteItemFromCart,
-    getCartByCustomer
+    getCartByCustomer,
+    deleteItemFromCartByCustomerId
 }

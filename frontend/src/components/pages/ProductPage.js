@@ -2,6 +2,8 @@ import React from 'react'
 import { Card, CardGroup, Button} from 'react-bootstrap';
 import "../../productPageStyles.css"
 import getProductRows from "../utils/product-utils"
+import api from '../api'
+
 const ProductPage = () => {
     let item1 = {
         name: "Item 1",
@@ -48,3 +50,14 @@ const ProductPage = () => {
 }
 
 export default ProductPage
+
+// componentDidMount = async () => {
+//     this.setState({ isLoading: true })
+
+//     await api.getAllMovies().then(movies => {
+//         this.setState({
+//             movies: movies.data.data,
+//             isLoading: false,
+//         })
+//     })
+// }

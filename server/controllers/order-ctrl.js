@@ -34,7 +34,7 @@ createOrder = (req, res) => {
 }
 
 getOrderByCustomer = async (req, res) => {
-    await Order.findOne({ symbol: req.params.customerId }, (err, order) => {
+    await Order.findOne({ customer_id: req.params.customer_id }, (err, order) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
