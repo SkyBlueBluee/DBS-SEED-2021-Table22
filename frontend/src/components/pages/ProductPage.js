@@ -3,6 +3,9 @@ import { Card, CardGroup, Button} from 'react-bootstrap';
 import "../../productPageStyles.css"
 import getProductRows from "../utils/product-utils"
 import apis from "../../api/index"
+
+import "./ProductPage.css"
+
 const ProductPage = () => {
     let item1 = {
         name: "Item 1",
@@ -35,7 +38,7 @@ const ProductPage = () => {
 
     const renderResults = getProductRows(products);
     return (
-        <div id="cardBody">
+        <div class="cardBody">
             {renderResults}
         </div>
     )
