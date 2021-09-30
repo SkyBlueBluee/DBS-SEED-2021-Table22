@@ -44,7 +44,7 @@ updateCartQuantity = async (req, res) => {
         })
     }
 
-    Cart.findOne({ customerId: req.params.customerId, productId: req.params.productId}, (err, cart) => {
+    Cart.findOne({ customerId: req.params.customer_Id, productId: req.params.productId}, (err, cart) => {
         if (err) {
             return res.status(404).json({
                 err,
@@ -72,7 +72,7 @@ updateCartQuantity = async (req, res) => {
 }
 
 deleteItemFromCart = async (req, res) => {
-    await Cart.findOneAndDelete({ customerId: req.params.customerId, productId: req.params.productId}, (err, cart) => {
+    await Cart.findOneAndDelete({ customerId: req.params.customer_Id, productId: req.params.productId}, (err, cart) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
@@ -88,7 +88,7 @@ deleteItemFromCart = async (req, res) => {
 }
 
 getCartByCustomer = async (req, res) => {
-    await Cart.findOne({ symbol: req.params.customerId }, (err, cart) => {
+    await Cart.findOne({ symbol: req.params.customer_Id }, (err, cart) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
