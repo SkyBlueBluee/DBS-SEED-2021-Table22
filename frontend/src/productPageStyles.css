@@ -3,3 +3,7 @@
     align-items: center;
     width: 80%;
 }
+
+#productAddButton {
+    float:right;
+}
