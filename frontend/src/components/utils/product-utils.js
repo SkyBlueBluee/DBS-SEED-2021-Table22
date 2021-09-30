@@ -9,7 +9,7 @@ export default function getProductRows(items) {
                 {
                     items.slice(i, i + 3)
                         .map(item => (
-                            <Card>
+                            <Card class="col-3"> 
                                 <Card.Img variant="top" src={item.img} />
                                 <Card.Body>
                                     <Card.Title>{item.name}</Card.Title>
