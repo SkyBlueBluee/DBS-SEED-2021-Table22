@@ -25,22 +25,6 @@ const ProductPage = () => {
     };
 
     let fakeItems = [item1, item2, item3, item3];
-    // TODO: Style this part too @JHoweWowe
-    const listItems = fakeItems.map((item) =>
-        <Card>
-        <Card.Img variant="top" src={item.img} />
-        <Card.Body>
-            <Card.Title>{item.name}</Card.Title>
-            <Card.Text>{item.description}</Card.Text>
-        </Card.Body>
-        <Card.Footer>
-            Qty: {item.quantity}
-            <div id="productAddButton">
-                <Button id="addButton">Add to Cart</Button>
-            </div>
-        </Card.Footer>
-        </Card>
-    );
     const renderResults = getProductRows(fakeItems);
     return (
         <div id="cardBody">
