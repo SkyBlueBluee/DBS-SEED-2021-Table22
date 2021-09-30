@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardGroup } from 'react-bootstrap';
 import "../../productPageStyles.css"
-
+import getProductRows from "../utils/product-utils"
 const ProductPage = () => {
     let item1 = {
         name: "Item 1",
@@ -19,7 +19,7 @@ const ProductPage = () => {
         quantity: 3
     };
 
-    let fakeItems = [item1, item2, item3];
+    let fakeItems = [item1, item2, item3, item3];
     // TODO: Style this part too @JHoweWowe
     const listItems = fakeItems.map((item) =>
         <Card>
@@ -33,11 +33,10 @@ const ProductPage = () => {
         </Card.Footer>
         </Card>
     );
+    const renderResults = getProductRows(fakeItems);
     return (
         <div id="cardBody">
-            <CardGroup>
-                {listItems}
-            </CardGroup>
+            {renderResults}
         </div>
     )
 }
