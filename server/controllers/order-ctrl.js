@@ -34,12 +34,12 @@ createOrder = (req, res) => {
 }
 
 getOrderByCustomer = async (req, res) => {
-    await Order.findOne({ customer_id: req.params.customer_id }, (err, order) => {
+
+    await Order.find({ customer_id: req.params.customer_id }, (err, order) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-
-        if (!order) {
+        if (!order || order.length == 0) {
             return res
                 .status(404)
                 .json({ success: false, error: `No orders found for customer ID ${req.params.customerId}` })

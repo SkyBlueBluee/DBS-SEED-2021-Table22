@@ -109,7 +109,7 @@ getCartByCustomer = async (req, res) => {
         if (err) {
             return res.status(400).json({ success: false, error: err })
         }
-        if (!cart) {
+        if (!cart || cart.length == 0) {
             return res
                 .status(404)
                 .json({ success: false, error: `No items found in cart for ID ${req.params.customer_id}` })
