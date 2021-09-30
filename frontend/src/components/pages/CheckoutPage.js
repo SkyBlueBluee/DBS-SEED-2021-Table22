@@ -6,7 +6,11 @@ import style from "./CheckoutPage.module.css"
 import "./CheckoutPageStyles.css"
 
 const CheckoutPage = () => {
-
+    let item0 = {
+        name: "Item 0",
+        description: "SHOULD NOT SHOW",
+        quantity: 0
+    };
     
     let item1 = {
         name: "Item 1",
@@ -24,10 +28,14 @@ const CheckoutPage = () => {
         description: "This is an item and it's nubmer is 3",
         quantity: 3
     };
-    let fakeItems = [item1, item2, item3];
+    let fakeItems = [item1, item2, item3, item3, item0,item3];
 
-    const listItems = fakeItems.map((item) =>
-        <Card style={{ width: "100%" }}>
+    function itemMap(item){
+        if(item.quantity <= 0)
+            return null;
+        
+        return (
+            <Card style={{ width: "100%" }}>
             <Card.Header>
                 <Card.Title>{item.name}</Card.Title>
             </Card.Header>
@@ -51,7 +59,10 @@ const CheckoutPage = () => {
                 </Row>
             </Card.Body>
         </Card>
-    );
+        );
+    }
+
+    const listItems = fakeItems.map(itemMap);
 
     let [tmpCount, setTmpCount] = useState(0);
     return (
