@@ -86,6 +86,23 @@ deleteItemFromCart = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
+deleteItemFromCartByCustomerId = async (req, res) => {
+    await Cart.findByIdAndDelete({ customer_Id: req.params.customer_Id}, (err, cart) => {
+        if (err) {
+            return res.status(400).json({ success: false, error: err })
+        }
+
+        if (!cart) {
+            return res
+                .status(404)
+                .json({ success: false, error: `Unable to find item in cart to delete` })
+        }
+
+        return res.status(200).json({ success: true, data: cart })
+    }).catch(err => console.log(err))
+}
+
+
 getCartByCustomer = async (req, res) => {
     await Cart.findOne({ symbol: req.params.customer_Id }, (err, cart) => {
         if (err) {
@@ -105,5 +122,6 @@ module.exports = {
     createCart,
     updateCartQuantity,
     deleteItemFromCart,
-    getCartByCustomer
+    getCartByCustomer,
+    deleteItemFromCartByCustomerId
 }
