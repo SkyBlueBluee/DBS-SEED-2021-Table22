@@ -24,7 +24,6 @@ function App() {
           </Route>
         </Switch>
       </Router>
-      <LoginPage></LoginPage>
       {
         //<CheckoutPage></CheckoutPage>
         //<ProductPage></ProductPage>
