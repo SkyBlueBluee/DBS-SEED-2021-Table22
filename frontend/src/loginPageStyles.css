@@ -1,0 +1,19 @@
+.header {
+    text-align: center;
+    font-size: 3rem;
+}
+
+#usernameGroup, #passwordGroup {
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+}
+
+#buttonContainer {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 8px 16px;
+    margin: 0 auto; 
+}

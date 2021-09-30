@@ -1,5 +1,4 @@
 const Cart = require('../models/cart-model')
-const axios = require('axios')
 
 createCart = (req, res) => {
     const body = req.body

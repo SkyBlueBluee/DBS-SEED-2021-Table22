@@ -89,19 +89,37 @@ deleteCustomer = async (req, res) => {
     }).catch(err => console.log(err))
 }
 
-loginCustomer = async (req, res) => {
-    await Stock.findOne({ symbol: req.params.symbol }, (err, stock) => {
+authenticateCustomer = async (req, res) => {
+    const body = req.body
+
+    if (!body) {
+        return res.status(400).json({
+            success: false,
+            error: 'You must provide a body to update',
+        })
+    }
+
+    Customers.findOne({ username: req.params.username }, (err, customer) => {
         if (err) {
-            return res.status(400).json({ success: false, error: err })
+            return res.status(404).json({
+                err,
+                message: 'Customer not found!',
+            })
         }
 
-        if (!stock) {
-            return res
-                .status(404)
-                .json({ success: false, error: `Stock not found` })
+        if (customer.password == body.password) {
+            return res.status(200).json({
+                    success: true,
+                    username: customer._username,
+                    message: 'Customer authenticated!',
+            })
+        } else {
+            return res.status(404).json({
+                success: true,
+                message: 'Password incorrect!',
+            })
         }
-        return res.status(200).json({ success: true, data: stock })
-    }).catch(err => console.log(err))
+    })
 }
 
 
@@ -109,5 +127,5 @@ module.exports = {
     createCustomer,
     updateCustomer,
     deleteCustomer,
-    loginCustomer
+    authenticateCustomer
 }
