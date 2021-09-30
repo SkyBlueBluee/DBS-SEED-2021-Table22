@@ -2,7 +2,6 @@ import React from 'react'
 import { Card, CardGroup, Button} from 'react-bootstrap';
 import "../../productPageStyles.css"
 import getProductRows from "../utils/product-utils"
-import api from '../api'
 
 const ProductPage = () => {
     let item1 = {
