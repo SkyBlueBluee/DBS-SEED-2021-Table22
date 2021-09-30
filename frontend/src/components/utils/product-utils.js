@@ -10,13 +10,13 @@ export default function getProductRows(items) {
                     items.slice(i, i + 3)
                         .map(item => (
                             <Card class="col-3"> 
-                                <Card.Img variant="top" src={item.img} />
+                                <Card.Img variant="top" src={item.image} />
                                 <Card.Body>
-                                    <Card.Title>{item.name}</Card.Title>
+                                    <Card.Title>{item.title}</Card.Title>
                                     <Card.Text>{item.description}</Card.Text>
                                 </Card.Body>
                                 <Card.Footer>
-                                    Qty: {item.quantity}
+                                    Qty: {item.qty}
                                     <div id="productAddButton">
                                         <Button id="addButton">Add to Cart</Button>
                                     </div>

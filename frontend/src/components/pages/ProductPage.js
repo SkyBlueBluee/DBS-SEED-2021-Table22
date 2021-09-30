@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Card, CardGroup, Button} from 'react-bootstrap';
 import "../../productPageStyles.css"
 import getProductRows from "../utils/product-utils"
-
+import apis from "../../api/index"
 const ProductPage = () => {
     let item1 = {
         name: "Item 1",
@@ -24,7 +24,16 @@ const ProductPage = () => {
     };
 
     let fakeItems = [item1, item2, item3, item3];
-    const renderResults = getProductRows(fakeItems);
+
+    let [products, setProducts] = useState([]);
+    useEffect(async () => {
+        console.log("HAHA")
+        let result = await apis.getProducts();
+        // console.log(result.data.data);
+        setProducts(result.data.data);
+    },[])
+
+    const renderResults = getProductRows(products);
     return (
         <div id="cardBody">
             {renderResults}
